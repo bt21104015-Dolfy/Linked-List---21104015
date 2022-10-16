@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+// function for searching
+// x=element to be searched
+// int array[]=input array to be searched
+int search(int array[], int x)
+{
+    int previous = 0;
+    int next = 1;
+    while (array[next] < x)
+    {
+
+        if (array[next] == x)
+        {
+            return next;
+        }
+        if (array[next] < x)
+        {
+
+            previous = next;
+            next = next + 2;
+        }
+    }
+    if (array[(previous + next) / 2] == x)
+    {
+        cout << "index of element: ";
+        return (previous + next) / 2;
+    }
+    else
+    {
+        return -1;
+        cout << "element not found";
+    }
+}
+
+// taking array input and getting output vai calling function
+// array made dynamically to avoid runtime issues
+int main()
+{
+    int size;
+    cin >> size;
+    int *input = new int[size];
+
+    for (int i = 0; i < size; ++i)
+
+    {
+        cin >> input[i];
+    }
+    int value;
+    cin >> value;
+    cout << search(input, value) << endl;
+
+    delete[] input;
+}
